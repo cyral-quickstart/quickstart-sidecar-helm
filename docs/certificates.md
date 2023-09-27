@@ -1,4 +1,4 @@
-# Certificates for Helm 3-deployed sidecars 
+# Configuring certificates for Helm sidecars 
 
 You can use Cyral's default [sidecar-created
 certificate](https://cyral.com/docs/sidecars/certificates/overview#sidecar-created-certificate) or use a
