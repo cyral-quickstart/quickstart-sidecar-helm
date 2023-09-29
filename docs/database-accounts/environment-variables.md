@@ -1,4 +1,4 @@
-# Setting up database accounts to a Helm sidecar through Kubernetes secrets
+# Setting up database accounts to a Helm sidecar through environment variables
 
 Cyral recommends setting up database accounts to a Helm sidecar
 using environment variables referencing Kubernetes secrets.
