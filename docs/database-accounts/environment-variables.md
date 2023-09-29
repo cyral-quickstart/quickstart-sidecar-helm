@@ -1,7 +1,7 @@
-# Setting up database accounts to a Helm sidecar through environment variables
+# Setting up database accounts to a Helm sidecar through Kubernetes secrets
 
-There are many ways to add extra environment variables to a container on Kubernetes.
-Cyral recommends adding the credentials as secret referencing environment variables.
+Cyral recommends setting up database accounts to a Helm sidecar
+using environment variables referencing Kubernetes secrets.
 
 Read more information about [database accounts](https://cyral.com/docs/manage-user-access/database-accounts)
 in our public docs.
@@ -18,10 +18,10 @@ Use one of the next 3 options in the sections below to create a secret:
 - from a secret yaml file
 
 For the selected option, define the following variables:
-- `SIDECAR_NAMESPACE`: the namespace that the sidecar will be deployed to
-- `SECRET_NAME`: the name of the secret that will contain the credentials
-- `CREDENTIALS_FILE`: the name of the file containing credentials
-- `CREDENTIALS_CONTENT`: the credential content
+- `SIDECAR_NAMESPACE`: namespace that the sidecar will be deployed to.
+- `SECRET_NAME`: name of the secret that will contain the credentials.
+- `CREDENTIALS_FILE`: name of the file containing the credentials.
+- `CREDENTIALS_CONTENT`: credentials content.
 
 ### Create a secret from a file containing the credentials
 
@@ -63,7 +63,7 @@ kubectl apply -f secret.yaml
 ## Configure the sidecar to fetch the environment variables from the credentials
 
 With the secret created, you need to add an environment variable to the `authenticator`
-field of the `values.yaml` file used for creating the sidecar.
+field of the `values.yaml` file used to create the sidecar.
 
 ```yaml
 authenticator:
@@ -123,13 +123,13 @@ stringData:
     ...
 ```
 
-Apply the file on your cluster with `kubectl`:
+Apply the file to your cluster with `kubectl`:
 
 ```bash
 kubectl apply -f secret.yaml
 ```
 
-To add them all, just add multiple environment variables on the `values.yaml` file.
+To add them all, just add multiple environment variables in the `values.yaml` file.
 
 ```yaml
 authenticator:

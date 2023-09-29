@@ -175,12 +175,13 @@ See the full list of parameters in the [values file configuration reference](./d
 
 Instructions for advanced deployment configurations are available for the following topics:
 
-* [Database accounts](./docs/database-accounts.md)
 * [Expose to the Internet](./docs/public-load-balancer.md)
 * [Node scheduling](./docs/node-scheduling.md)
 * [Restrict repositories' ports](./docs/port-configuration.md)
+* [Set up database accounts through environment variables](./docs/database-accounts/environment-variables.md)
+* [Set up database accounts through AWS Secrets Manager](./docs/database-accounts/aws-secrets-manager.md)
 * [Set up resources](./docs/resources.md)
 * [Sidecar certificates](./docs/certificates.md)
 * [Sidecar instance metrics](./docs/metrics.md)
-* [Use pre-existing service account](./docs/pre-existing-sa.md)
+* [Use a pre-existing service account](./docs/pre-existing-sa.md)
 * [Values file](./docs/values-file.md)
