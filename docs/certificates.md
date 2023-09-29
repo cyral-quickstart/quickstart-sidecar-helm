@@ -72,7 +72,7 @@ This will trigger a chain that will eventually create a `tls` secret with the na
 it here](#provide-custom-certificate-to-the-sidecar).**
 
 :::warning
-By default, the sidecar contains permissions to `get` and `watch` `Secret` resources in the namespace it's created in. If you are using a custom `ServiceAccount`,
+By default, the sidecar contains permissions to `get` and `watch` `v1/Secret` resources in the namespace it's created in. If you are using a custom `ServiceAccount`,
 make sure it has these permissions attached to it.
 :::
 
