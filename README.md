@@ -184,4 +184,4 @@ Instructions for advanced deployment configurations are available for the follow
 * [Sidecar certificates](./docs/certificates.md)
 * [Sidecar instance metrics](./docs/metrics.md)
 * [Use a pre-existing service account](./docs/pre-existing-sa.md)
-* [Values file](./docs/values-file.md)
+* [Values file reference](./docs/values-file.md)
