@@ -171,6 +171,20 @@ See the next section for more details about the values file parameters.
 
 See the full list of parameters in the [values file configuration reference](./docs/values-file.md).
 
+### Upgrade procedure
+
+* Open a command line terminal in the same folder you have your `values.yaml` file.
+* Run the following command to deploy your sidecar, replacing the following variables:
+    * `<SIDECAR_NAMESPACE>`: the sidecar namespace.
+    * `<VERSION>`: the version the sidecar should be upgraded to.
+
+```bash
+helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
+  --repo https://charts.cyral.com /
+  --version <VERSION>
+```
+
 ### Advanced
 
 Instructions for advanced deployment configurations are available for the following topics:
