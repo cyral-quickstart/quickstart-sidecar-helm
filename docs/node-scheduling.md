@@ -44,6 +44,9 @@ affinity:
           - another-node-label-value
 ```
 
+**TIP**: You can configure presets for pod anti-affinity and pod affinity using the 
+`podAntiAffinityPreset` and `podAffinityPreset` keys in the [values file](./values-file.md).
+
 To learn more about affinity and anti affinity, check out [kubernetes own documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) on it.
 
 ## Pod tolerations

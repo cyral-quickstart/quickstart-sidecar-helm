@@ -48,15 +48,19 @@ your Helm sidecar.
 
 ### Deployment configuration
 
-| Field                | Description                                                   | Default Value |
-| -------------------- | ------------------------------------------------------------- | ------------- |
-| `replicaCount`       | Number of replicas of the deployment                          | 1             |
-| `nodeSelector`       | Node selector for the pods of the deployment                  | {}            |
-| `tolerations`        | Tolerations for the pods of the deployment                    | []            |
-| `affinity`           | Affinity configuration for the pods                           | {}            |
-| `extraVolumes`       | Extra volumes to be created on the deployment                 | []            |
-| `podSecurityContext` | Security context for each pod created in the deployment       | {}            |
-| `securityContext`    | Security context for each container created in the deployment | {}            |
+| Field                  | Description                                                   | Default Value |
+| -------------------- --| ------------------------------------------------------------- | ------------- |
+| `affinity`             | Affinity configuration for the pods                           | {}            |
+| `extraVolumes`         | Extra volumes to be created on the deployment                 | []            |
+| `nodeAffinityPreset`   | TODO                           | {}            |
+| `nodeSelector`         | Node selector for the pods of the deployment                  | {}            |
+| `replicaCount`         | Number of replicas of the deployment                          | 1             |
+| `podAffinityPreset`    | TODO                           | {}            |
+| `podAntiAffinityPreset`| TODO                           | {}            |
+| `podSecurityContext`   | Security context for each pod created in the deployment       | {}            |
+| `securityContext`      | Security context for each container created in the deployment | {}            |
+| `tolerations`          | Tolerations for the pods of the deployment                    | []            |
+
 
 ### Service configuration
 
