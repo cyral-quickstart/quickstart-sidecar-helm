@@ -1,15 +1,16 @@
 # Values file configuration reference
 
-This page describes the options that can be set in the `values.yaml` file to configure
-your Helm sidecar.
+This page describes the options that can be set in the `values.yaml` file to
+configure your Helm sidecar.
 
-**NOTE:** The default values also define the type of structure that should be put in the field:
+**NOTE:** The default values also define the type of structure that should be
+put in the field:
 
-| Default Value   | Variable Type    |
-|--------------- | --------------- |
-| []   | Array   |
-| ""   | String   |
-| {}   | Complex object   |
+| Default Value | Variable Type  |
+| ------------- | -------------- |
+| []            | Array          |
+| ""            | String         |
+| {}            | Complex object |
 
 ## Kubernetes configuration
 
@@ -48,19 +49,21 @@ your Helm sidecar.
 
 ### Deployment configuration
 
-| Field                  | Description                                                   | Default Value |
-| -------------------- --| ------------------------------------------------------------- | ------------- |
-| `affinity`             | Affinity configuration for the pods                           | {}            |
-| `extraVolumes`         | Extra volumes to be created on the deployment                 | []            |
-| `nodeAffinityPreset`   | TODO                           | {}            |
-| `nodeSelector`         | Node selector for the pods of the deployment                  | {}            |
-| `replicaCount`         | Number of replicas of the deployment                          | 1             |
-| `podAffinityPreset`    | TODO                           | {}            |
-| `podAntiAffinityPreset`| TODO                           | {}            |
-| `podSecurityContext`   | Security context for each pod created in the deployment       | {}            |
-| `securityContext`      | Security context for each container created in the deployment | {}            |
-| `tolerations`          | Tolerations for the pods of the deployment                    | []            |
-
+| Field                       | Description                                                                                                                                                                                                                       | Default Value |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `affinity`                  | Affinity configuration for the pods                                                                                                                                                                                               | {}            |
+| `extraVolumes`              | Extra volumes to be created on the deployment                                                                                                                                                                                     | []            |
+| `podAffinityPreset`         | Pod affinity preset. Ignored if `affinity` is set. Can be one of `hard` or `soft`. Creates an affinity between the deployment's pods. If set to hard, affinity is required, if set to soft, affinity is preferred.                | ""            |
+| `podAntiAffinityPreset`     | Pod anti-affinity preset. Ignored if `affinity` is set. Can be one of `hard` or `soft`. Creates an anti-affinity clause between the deploment's pod. If set to hard, affinity is required, if set to soft, affinity is preferred. |               |
+|                             | "soft"                                                                                                                                                                                                                            |               |
+| `nodeAffinityPreset.type`   | Node affinity preset type. Ignored if `affinity` is set. Can be one of `hard` or `soft`. If set to hard, affinity is required, if set to soft, affinity is preferred.                                                             | ""            |
+| `nodeAffinityPreset.key`    | Node label key to match for affinity definition. Ignored if `affinity` is set.                                                                                                                                                    | ""            |
+| `nodeAffinityPreset.values` | Node label values to match for affinity definition. Ignored if `affinity` is set.                                                                                                                                                 | []            |
+| `nodeSelector`              | Node selector for the pods of the deployment                                                                                                                                                                                      | {}            |
+| `replicaCount`              | Number of replicas of the deployment                                                                                                                                                                                              | 1             |
+| `podSecurityContext`        | Security context for each pod created in the deployment                                                                                                                                                                           | {}            |
+| `securityContext`           | Security context for each container created in the deployment                                                                                                                                                                     | {}            |
+| `tolerations`               | Tolerations for the pods of the deployment                                                                                                                                                                                        | []            |
 
 ### Service configuration
 
@@ -113,11 +116,12 @@ file, you add the configuration to its `<container>` section.
 
 ### Resource configuration
 
-**IMPORTANT:** We don't set default resources for the deployment. This is infrastructure specific.
+**IMPORTANT:** We don't set default resources for the deployment. This is
+infrastructure specific.
 
-**NOTE:** To read more about container resources on Kubernetes, read [our guide on setting resources](./scenarios/resources.mdx) and
+**NOTE:** To read more about container resources on Kubernetes, read
+[our guide on setting resources](./scenarios/resources.mdx) and
 [Kubernetes' documentation on it](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-
 
 | Field                                   | Description                       | Default Value |
 | --------------------------------------- | --------------------------------- | ------------- |
@@ -128,10 +132,12 @@ file, you add the configuration to its `<container>` section.
 
 ## Repository Configuration
 
-This configuration applies for all repository specific containers. To apply this to the values.yaml file,
-add it in the section for the `<repo>` type you want to apply it to.
-For example, you would set the ports configuration for MySQL databases in the parameter, `mysql.ports`.
-Most repositories also contain all configurations contained in the [Container Configuration](#container-configuration) section.
+This configuration applies for all repository specific containers. To apply this
+to the values.yaml file, add it in the section for the `<repo>` type you want to
+apply it to. For example, you would set the ports configuration for MySQL
+databases in the parameter, `mysql.ports`. Most repositories also contain all
+configurations contained in the
+[Container Configuration](#container-configuration) section.
 
 ### General configuration
 
@@ -148,13 +154,14 @@ Most repositories also contain all configurations contained in the [Container Co
 | `snowflake.idp.SSOLoginURL` | URL for the SSO for snowflake connections | ""            |
 | `snowflake.idp.certificate` | Certificate for the snowflake SSO         | ""            |
 
-**NOTE:** Denodo and redshift repositories do not have image nor resource configurations,
-since they are handled by the same container as the `postgres` repository.
+**NOTE:** Denodo and redshift repositories do not have image nor resource
+configurations, since they are handled by the same container as the `postgres`
+repository.
 
 ## Integration configuration
 
-These configurations will usually be generated by your control plane,
-**don't change these** without help from Cyral support.
+These configurations will usually be generated by your control plane, **don't
+change these** without help from Cyral support.
 
 ### HashiCorp Vault
 
