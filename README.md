@@ -171,7 +171,9 @@ See the next section for more details about the values file parameters.
 
 See the full list of parameters in the [values file configuration reference](./docs/values-file.md).
 
-### Upgrade procedure
+### Upgrade
+
+Use the following procedure to upgrade your sidecar:
 
 * Open a command line terminal in the same folder you have your `values.yaml` file.
 * Run the following command to deploy your sidecar, replacing the following variables:
@@ -184,6 +186,8 @@ helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
   --repo https://charts.cyral.com /
   --version <VERSION>
 ```
+
+Learn more in the [sidecar upgrade procedures](https://cyral.com/docs/sidecars/manage/upgrade/) page.
 
 ### Advanced
 
