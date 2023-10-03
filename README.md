@@ -16,7 +16,7 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
 
 ### Examples
 
-#### Quickstart
+#### Quick Start
 
 * Save the code below in a `values.yaml` file.
     * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
@@ -74,7 +74,7 @@ service:
     #################################################################
 ```
 
-The quickstart example above will create the simplest configuration possible on your Kubernetes cluster
+The quick start example above will create the simplest configuration possible on your Kubernetes cluster
 and deploy a single sidecar instance behind the load balancer.
 
 Make sure to allow for proper network connectivity from your cluster nodes 
