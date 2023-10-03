@@ -96,11 +96,10 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-kubectl create namespace <SIDECAR_NAMESPACE>
-helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
+helm repo add cyral https://charts.cyral.com
+helm upgrade -i <RELEASE_NAME> cyral/cyral-sidecar /
   --namespace <SIDECAR_NAMESPACE> -f values.yaml /
-  --repo https://charts.cyral.com /
-  --version <VERSION>
+  --version <VERSION> --create-namespace
 ```
 
 ```yaml
