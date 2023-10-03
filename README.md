@@ -91,6 +91,7 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
     in the `Deployment` tab of your sidecar details.
 * Open a command line terminal in the same folder you saved the file.
 * Run the following command to deploy your sidecar, replacing the following variables:
+    * `<RELEASE_NAME>`: your choice of name for the deployment, if its a  single sidecar in a namespace we'll typically use `cyral-sidecar` or `cyral-sidecar-<SIDECAR_ID>`
     * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
     `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
     * `<VERSION>`: the version of your sidecar.
