@@ -4,7 +4,7 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
 
 ## Architecture
 
-**TODO:** Add image with deployment architecture.
+![Kubernetes Architecture](./docs/helm-arch.png)
 
 ## Deployment
 
