@@ -26,15 +26,15 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
 * Run the following command to deploy your sidecar, replacing the following variables:
     * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
     `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
+    * `<SIDECAR_RELEASE_NAME>`: the name of your release. We also recommend `cyral-` + `<SIDECAR_ID>` or some suffix to help locating the release.
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-kubectl create namespace <SIDECAR_NAMESPACE>
-helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
-  --repo https://charts.cyral.com /
+helm repo add cyral https://charts.cyral.com
+helm upgrade -i <SIDECAR_RELEASE_NAME> cyral/cyral-sidecar \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  --create-namespace \
   --version <VERSION>
-```
 
 ```yaml
 controlPlane:
