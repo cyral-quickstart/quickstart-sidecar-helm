@@ -63,4 +63,4 @@ tolerations:
 ```
 
 To learn more about taints and tolerations, check out
-[kubernetes own documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) on it.
+[kubernetes documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) on it.
