@@ -71,10 +71,8 @@ This will trigger a chain that will eventually create a `tls` secret with the na
 **The secret name must be provided to the sidecar Helm chart.  See [how to do
 it here](#provide-custom-certificate-to-the-sidecar).**
 
-:::warning
-By default, the sidecar contains permissions to `get` and `watch` `v1/Secret` resources in the namespace it's created in. If you are using a custom `ServiceAccount`,
-make sure it has these permissions attached to it.
-:::
+**WARNING:** By default, the sidecar contains permissions to `get` and `watch` `v1/Secret` resources in the  namespace
+it's created in. If you are using a custom `ServiceAccount`, make sure it has these permissions attached to it.
 
 ## Provide custom certificate to the sidecar
 

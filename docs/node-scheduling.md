@@ -14,9 +14,7 @@ nodeSelector:
   SOME_LABEL: SOME_VALUE
 ```
 
-:::info
-To learn more about node selectors, check out [kubernetes own documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) on it.
-:::
+Learn more about [node selectors](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector).
 
 ## Node Affinity
 
@@ -47,7 +45,7 @@ affinity:
 **TIP**: You can configure presets for pod anti-affinity and pod affinity using the 
 `podAntiAffinityPreset` and `podAffinityPreset` keys in the [values file](./values-file.md#deployment-configuration).
 
-To learn more about affinity and anti affinity, check out [kubernetes documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) on it.
+Learn more about [affinity and anti affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
 
 ## Pod tolerations
 
@@ -62,5 +60,4 @@ tolerations:
   effect: "NoSchedule"
 ```
 
-To learn more about taints and tolerations, check out
-[kubernetes documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) on it.
+Learn more about [taints and tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
