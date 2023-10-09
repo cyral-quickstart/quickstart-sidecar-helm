@@ -2,9 +2,13 @@
 
 A quick start to deploy a sidecar to Kubernetes using Helm!
 
+---
+
 ## Architecture
 
 ![Kubernetes Architecture](./docs/helm-arch.png)
+
+---
 
 ## Deployment
 
@@ -171,7 +175,9 @@ See the next section for more details about the values file parameters.
 
 See the full list of parameters in the [values file configuration reference](./docs/values-file.md).
 
-### Upgrade
+---
+
+## Upgrade
 
 Use the following procedure to upgrade your sidecar:
 
@@ -189,9 +195,11 @@ helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
 
 Learn more in the [sidecar upgrade procedures](https://cyral.com/docs/sidecars/manage/upgrade/) page.
 
-### Advanced
+---
 
-Instructions for advanced deployment configurations are available for the following topics:
+## Advanced
+
+Instructions for advanced configurations are available for the following topics:
 
 * [Expose to the Internet](./docs/public-load-balancer.md)
 * [Node scheduling](./docs/node-scheduling.md)
