@@ -26,19 +26,6 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
     * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
     and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
-* Open a command line terminal in the same folder you saved the file.
-* Run the following command to deploy your sidecar, replacing the following variables:
-    * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
-    `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
-    * `<SIDECAR_RELEASE_NAME>`: the name of your release. We also recommend `cyral-` + `<SIDECAR_ID>` or some suffix to help locating the release.
-    * `<VERSION>`: the version of your sidecar.
-
-```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <SIDECAR_RELEASE_NAME> cyral/cyral-sidecar \
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
-  --create-namespace \
-  --version <VERSION>
 
 ```yaml
 controlPlane:
@@ -78,6 +65,21 @@ service:
     #################################################################
 ```
 
+* Open a command line terminal in the same folder you saved the file.
+* Run the following command to deploy your sidecar, replacing the following variables:
+    * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
+    `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
+    * `<SIDECAR_RELEASE_NAME>`: the name of your release. We also recommend `cyral-` + `<SIDECAR_ID>` or some suffix to help locating the release.
+    * `<VERSION>`: the version of your sidecar.
+
+```bash
+helm repo add cyral https://charts.cyral.com
+helm upgrade -i <SIDECAR_RELEASE_NAME> cyral/cyral-sidecar \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  --create-namespace \
+  --version <VERSION>
+```
+
 The quick start example above will create the simplest configuration possible on your Kubernetes cluster
 and deploy a single sidecar instance behind the load balancer.
 
@@ -93,19 +95,6 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
     * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
     and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
-* Open a command line terminal in the same folder you saved the file.
-* Run the following command to deploy your sidecar, replacing the following variables:
-    * `<RELEASE_NAME>`: your choice of name for the deployment, if its a  single sidecar in a namespace we'll typically use `cyral-sidecar` or `cyral-sidecar-<SIDECAR_ID>`
-    * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
-    `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
-    * `<VERSION>`: the version of your sidecar.
-
-```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <RELEASE_NAME> cyral/cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
-  --version <VERSION> --create-namespace
-```
 
 ```yaml
 controlPlane:
@@ -154,6 +143,20 @@ service:
     ## to "false":
     #service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     #################################################################
+```
+
+* Open a command line terminal in the same folder you saved the file.
+* Run the following command to deploy your sidecar, replacing the following variables:
+    * `<RELEASE_NAME>`: your choice of name for the deployment, if its a  single sidecar in a namespace we'll typically use `cyral-sidecar` or `cyral-sidecar-<SIDECAR_ID>`
+    * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
+    `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
+    * `<VERSION>`: the version of your sidecar.
+
+```bash
+helm repo add cyral https://charts.cyral.com
+helm upgrade -i <RELEASE_NAME> cyral/cyral-sidecar /
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
+  --version <VERSION> --create-namespace
 ```
 
 The example above will create a production-grade configuration and assumes you understand
