@@ -10,10 +10,9 @@ service:
     certificateId: "arn:aws:acm:<REGION>:<AWS_ACCOUNT>:certificate/<CERTIFICATE_ID>"
 ```
 
-For the helm template, there is no equivalent to the terraform’s
-`sidecar_dns_hosted_zone_id` variable. It means the CNAME will need to
-be created after the deployment. See [Add a CNAME or A record for the
-sidecar](https://cyral.com/docs/sidecars/manage/alias).
+The CNAME provided in `service.dnsName` must be created
+after the deployment pointing to the sidecar load balancer.
+See [Add a CNAME or A record for the sidecar](https://cyral.com/docs/sidecars/manage/alias).
 
 All the Helm parameters used above are documented in the 
 [values file configuration reference](./values-file.md). 
