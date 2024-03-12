@@ -16,7 +16,7 @@ be created after the deployment. See [Add a CNAME or A record for the
 sidecar](https://cyral.com/docs/sidecars/manage/alias).
 
 All the Helm parameters used above are documented in the 
-[values file configuration reference](./docs/values-file.md). 
+[values file configuration reference](./values-file.md). 
 For more details about the S3 File Browser configuration, check the 
 [Enable the S3 File Browser](https://cyral.com/docs/how-to/enable-s3-browser) 
 documentation.
