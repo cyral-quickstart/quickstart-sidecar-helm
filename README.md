@@ -204,6 +204,7 @@ Learn more in the [sidecar upgrade procedures](https://cyral.com/docs/sidecars/m
 
 Instructions for advanced configurations are available for the following topics:
 
+* [Enable the S3 File Browser](./docs/s3-browser.md)
 * [Expose to the Internet](./docs/public-load-balancer.md)
 * [Node scheduling](./docs/node-scheduling.md)
 * [Restrict repositories' ports](./docs/port-configuration.md)
