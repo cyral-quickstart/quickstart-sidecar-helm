@@ -37,7 +37,7 @@ forwardProxy:
   clientId: ""
   clientSecret: ""
   secretName: sidecar-secret
-  secretKeyName: secret
+  secretKeyName: credentials.json
 ​
 service:
   enabled: true
@@ -108,7 +108,7 @@ forwardProxy:
   clientId: ""
   clientSecret: ""
   secretName: sidecar-secret
-  secretKeyName: secret
+  secretKeyName: credentials.json
 
 # Sets the node and inter-pod affinities so pods won't run
 # in the same node.
