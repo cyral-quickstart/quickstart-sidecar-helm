@@ -14,9 +14,10 @@ By default, EKS provisions an internal facing load balancer for a `LoadBalancer`
 you need to add the following annotations on the `service.annotations` field of the values file:
 
 ```yaml
-annotations:
-service.beta.kubernetes.io/aws-load-balancer-type: "external"
-service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+service:
+    annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: "external"
+        service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
 ```
 
 You can view a full list of possible annotations on [this page](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/service/annotations).
@@ -25,8 +26,9 @@ You can view a full list of possible annotations on [this page](https://kubernet
 By default, OKE provisions a public IP for any `LoadBalancer` service. You can add the following annotation on the `service.annotations` field of the values file if you want OKE to provision an internal load balancer:
 
 ```yaml
-annotations:
-service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+service:
+    annotations:
+        service.beta.kubernetes.io/oci-load-balancer-internal: "true"
 ```
 
 If needed, you can check [OCI](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm) docs for any special needs for your deployment.
