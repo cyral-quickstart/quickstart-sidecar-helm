@@ -34,8 +34,11 @@ and only expose the ports defined in that section.
 service:
   ...
   ports:
-    - 5432
-    - 3306
+    mysql: 3306
+    pg: 5432
+  targetPort:
+    mysql: mysql
+    pg: pg
 ```
 
 The above example makes no port but `3306` and `5432` be exposed on the service.
