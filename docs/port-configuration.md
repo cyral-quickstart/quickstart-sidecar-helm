@@ -3,13 +3,9 @@
 A single Cyral sidecar cluster usually monitors and protects many
 repositories of different types. To make it easy for data users to
 connect to these repositories using the port numbers they're
-accustomed to, the sidecar cluster exposes multiple ports, which
-are neatly organized in each repo's section of the provided values
-file.
-
-You can restrict or increase the set of exposed ports by either changing
-the exposed ports for each repository or by overriding all ports on the main
-service configuration of the `values.yaml` file.
+accustomed to, the sidecar cluster exposes multiple ports.
+You can restrict or increase the set of exposed ports by changing
+the exposed ports in the `values.yaml` file.
 
 ## Changing a single repository exposed ports
 
@@ -18,27 +14,14 @@ defined ports not get exposed in the main service. For example, by default,
 the `mysql` section of the `values.yaml` file contains this definition:
 
 ```yaml
-mysql:
-  enabled: true
-  ...
-  ports:
-    ...
-    # ports that are added to the sidecar service
-    sidecar:
-      - 3306
-      - 3307
-      - 3308
- ...
+containerPorts:
+  mysql: 3306
+  pg: 5432
 ```
 
-This means that the ports `3306`, `3307` and `3308` will be exposed in the
-sidecar service. To increase or decrease the ports exposed for `mysql`, you can
-add or remove ports from the `mysql.sidecar.ports` section of the `values.yaml` file.
-This is analogous for all repositories, that is, you can change the `<repo>.sidecar.ports`
-section to add or remove specific ports from the exposed list.
-
-**NOTE:** If a repository is disabled, that is, the `<repo>.enabled` key is set to `false`,
-none of its ports will be exposed in the service.
+This means that the ports `3306` and `5432` will be exposed in the
+sidecar service. To increase or decrease the ports exposed, you can
+add or remove ports from the `containerPorts` section of the `values.yaml` file.
 
 ## Overriding all exposed ports
 
