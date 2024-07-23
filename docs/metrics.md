@@ -7,35 +7,22 @@ on the `Prometheus` configuration for your `Kubernetes` cluster. You can
 set the metrics port by adding the following to your `values.yaml` file:
 
 ```yaml
-metrics:
-  port: 9000 # this is the default value
+containerPorts:
+  metrics: 9000 # this is the default value
 ```
 
-By default, this port will be exposed on the `Service` object created by the `helm` chart.
-To disable its exposure, you can add the following to your `values.yaml` file:
+By default, this port will not be exposed on the `Service` object created by the `helm` chart.
+To enable its exposure, you can add the following to your `values.yaml` file:
 
 ```yaml
-metrics:
-  expose: false
+service:
+  ports:
+    metrics: 9000
+  targetPort:
+    metrics: metrics
 ```
 
 ## Prometheus configuration
-
-### Service Monitor discovery configuration
-
-The sidecar `helm` chart packages a `ServiceMonitor` object which can be used
-in conjunction with a [`prometheus operator`](https://github.com/prometheus-operator/prometheus-operator) to
-monitor all pods in the sidecar's `Deployment`. To enable the service monitor, you
-can add the following to your `values.yaml` file:
-
-```yaml
-metrics:
-  serviceMonitor:
-    enabled: true
-```
-
-**NOTE:** There are many other configuration options for the `ServiceMonitor` object,
-you can look at the default `values.yaml` file to know all the options.
 
 ### Annotation based Prometheus discovery configuration
 
