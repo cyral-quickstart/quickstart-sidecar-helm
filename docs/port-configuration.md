@@ -33,7 +33,7 @@ names later on to expose them through a Kubernetes service.
 
 To expose container ports to external traffic or to other pods within the cluster, you need to set
 service ports. The `service` object defines `ports` and `targetPorts`. The `ports` property specifies
-the ports the Service will expose, while `targetPort`  maps the Service ports to the container's
+the ports the Service will expose, while `targetPort` maps the Service ports to the container's
 `containerPorts` declared previously.
 
 In `service.ports`, you define a map of `<port-name>: <port-number>` where the Kubernetes service
