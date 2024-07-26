@@ -7,16 +7,19 @@ on the `Prometheus` configuration for your `Kubernetes` cluster. You can
 set the metrics port by adding the following to your `values.yaml` file:
 
 ```yaml
-metrics:
-  port: 9000 # this is the default value
+containerPorts:
+  metrics: 9000 # this is the default value
 ```
 
-By default, this port will be exposed on the `Service` object created by the `helm` chart.
-To disable its exposure, you can add the following to your `values.yaml` file:
+By default, this port will not be exposed on the `Service` object created by the `helm` chart.
+To enable its exposure, you can add the following to your `values.yaml` file:
 
 ```yaml
-metrics:
-  expose: false
+service:
+  ports:
+    metrics: 9000
+  targetPort:
+    metrics: metrics
 ```
 
 ## Prometheus configuration

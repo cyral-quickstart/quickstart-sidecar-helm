@@ -3,14 +3,17 @@
 To configure the sidecar to work on the S3 File Browser, set the following extra parameters under the service key of your values file:
 
 ```
+cyral:
+  sidecar:
+    dnsName: "<CNAME>" # ex: "sidecar.custom-domain.com"
 service:
-  dnsName: "<CNAME>" # ex: "sidecar.custom-domain.com"
-  loadBalancer:
-    tlsPorts: [443]
-    certificateId: "arn:aws:acm:<REGION>:<AWS_ACCOUNT>:certificate/<CERTIFICATE_ID>"
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:<REGION>:<AWS_ACCOUNT>:certificate/<CERTIFICATE_ID>"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443
 ```
 
-The CNAME provided in `service.dnsName` must be created
+The CNAME provided in `cyral.sidecar.dnsName` must be created
 after the deployment pointing to the sidecar load balancer.
 See [Add a CNAME or A record for the sidecar](https://cyral.com/docs/sidecars/manage/alias).
 

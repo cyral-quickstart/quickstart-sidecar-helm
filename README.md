@@ -23,21 +23,17 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
 #### Quick Start
 
 * Save the code below in a `values.yaml` file.
-    * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
-    and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
+    * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
+    and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
 
 ```yaml
-controlPlane:
-  host: ""
-
-sidecarId: ""
-
-forwardProxy:
-  clientId: ""
-  clientSecret: ""
-  secretName: sidecar-secret
-  secretKeyName: credentials.json
+cyral:
+  controlPlane: ""
+  sidecarId: ""
+  credentials:
+    clientId: ""
+    clientSecret: ""
 ​
 service:
   enabled: true
@@ -75,10 +71,10 @@ service:
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <SIDECAR_RELEASE_NAME> cyral/cyral-sidecar \
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+helm upgrade -i <SIDECAR_RELEASE_NAME> \
   --create-namespace \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION>
 ```
 
@@ -94,21 +90,17 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
 
 
 * Save the code below in a `values.yaml` file.
-    * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
-    and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
+    * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
+    and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
 
 ```yaml
-controlPlane:
-  host: ""
-
-sidecarId: ""
-
-forwardProxy:
-  clientId: ""
-  clientSecret: ""
-  secretName: sidecar-secret
-  secretKeyName: credentials.json
+cyral:
+  controlPlane: ""
+  sidecarId: ""
+  credentials:
+    clientId: ""
+    clientSecret: ""
 
 # Sets the node and inter-pod affinities so pods won't run
 # in the same node.
@@ -157,9 +149,9 @@ service:
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <RELEASE_NAME> cyral/cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
+helm upgrade -i <RELEASE_NAME> \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION> --create-namespace
 ```
 
@@ -194,9 +186,9 @@ Use the following procedure to upgrade your sidecar:
     * `<VERSION>`: the version the sidecar should be upgraded to.
 
 ```bash
-helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
-  --repo https://charts.cyral.com /
+helm upgrade -i <RELEASE_NAME> \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION>
 ```
 

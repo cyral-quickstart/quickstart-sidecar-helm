@@ -97,12 +97,13 @@ Suppose you created the secrets `my-tls-secret` and `my-ca-secret`, then
 provide the following to your values file:
 
 ```yaml
-certificateManager:
-  certificates:
-    tls:
-      existingSecret: "my-tls-secret"
-    ca:
-      existingSecret: "my-ca-secret"
+cyral:
+  sidecar:
+    certificates:
+      tls:
+        existingSecret: "my-tls-secret"
+      ca:
+        existingSecret: "my-ca-secret"
 ```
 
 The choice between providing a `tls`, a `ca` secret or *both* will depend on the repositories

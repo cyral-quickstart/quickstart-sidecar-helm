@@ -66,13 +66,12 @@ With the secret created, you need to add an environment variable to the `authent
 field of the `values.yaml` file used to create the sidecar.
 
 ```yaml
-authenticator:
-  extraEnvs:
-  - name: CYRAL_DBSECRETS_<env-var-configured-in-the-control-plane>
-    valueFrom:
-      secretKeyRef:
-        name: $SECRET_NAME
-        key: credentials
+extraEnvs:
+- name: CYRAL_DBSECRETS_<env-var-configured-in-the-control-plane>
+  valueFrom:
+    secretKeyRef:
+      name: $SECRET_NAME
+      key: credentials
 ```
 
 ## Multiple credentials in a single secret
@@ -132,17 +131,16 @@ kubectl apply -f secret.yaml
 To add them all, just add multiple environment variables in the `values.yaml` file.
 
 ```yaml
-authenticator:
-  extraEnvs:
-  - name: CYRAL_DBSECRETS_<repo1 env var>
-    valueFrom:
-      secretKeyRef:
-        name: $SECRET_NAME
-        key: repo1
-  - name: CYRAL_DBSECRETS_<repo2 env var>
-    valueFrom:
-      secretKeyRef:
-        name: $SECRET_NAME
-        key: repo2
+extraEnvs:
+- name: CYRAL_DBSECRETS_<repo1 env var>
+  valueFrom:
+    secretKeyRef:
+      name: $SECRET_NAME
+      key: repo1
+- name: CYRAL_DBSECRETS_<repo2 env var>
+  valueFrom:
+    secretKeyRef:
+      name: $SECRET_NAME
+      key: repo2
   ...
 ```

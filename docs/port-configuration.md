@@ -3,56 +3,62 @@
 A single Cyral sidecar cluster usually monitors and protects many
 repositories of different types. To make it easy for data users to
 connect to these repositories using the port numbers they're
-accustomed to, the sidecar cluster exposes multiple ports, which
-are neatly organized in each repo's section of the provided values
-file.
+accustomed to, the sidecar cluster exposes multiple ports.
+You can restrict or increase the set of exposed ports by changing
+the exposed ports in the `values.yaml` file.
 
-You can restrict or increase the set of exposed ports by either changing
-the exposed ports for each repository or by overriding all ports on the main
-service configuration of the `values.yaml` file.
+## Declaring container ports
 
-## Changing a single repository exposed ports
-
-On the `values.yaml` file, you can disable a specific repository, which will make its
-defined ports not get exposed in the main service. For example, by default,
-the `mysql` section of the `values.yaml` file contains this definition:
+On the `values.yaml` file, you can find different parameters related
+to ports exposure. The `containerPorts` object specifies which ports
+the container will listen on. It has a map of `<port-name>: <port-number>`,
+where `<port-name>` is an arbitrary name for the port and `<port-number>`
+is an integer to the TCP port. These are the same port numbers used to bind
+data repositories on the Control Plane.
 
 ```yaml
-mysql:
-  enabled: true
-  ...
-  ports:
-    ...
-    # ports that are added to the sidecar service
-    sidecar:
-      - 3306
-      - 3307
-      - 3308
- ...
+containerPorts:
+  mysql: 3306
+  pg: 5432
+  mongodb0: 27017
+  mongodb1: 27018
+  mongodb2: 27019
 ```
 
-This means that the ports `3306`, `3307` and `3308` will be exposed in the
-sidecar service. To increase or decrease the ports exposed for `mysql`, you can
-add or remove ports from the `mysql.sidecar.ports` section of the `values.yaml` file.
-This is analogous for all repositories, that is, you can change the `<repo>.sidecar.ports`
-section to add or remove specific ports from the exposed list.
+The above example declares some port names (`mysql`, `pg`, `mongodb0`, `mongodb1`,
+and `mongodb2`) and their corresponding port numbers. We can refer to these port
+names later on to expose them through a Kubernetes service.
 
-**NOTE:** If a repository is disabled, that is, the `<repo>.enabled` key is set to `false`,
-none of its ports will be exposed in the service.
+## Exposing container ports
 
-## Overriding all exposed ports
+To expose container ports to external traffic or to other pods within the cluster, you need to set
+service ports. The `service` object defines `ports` and `targetPorts`. The `ports` property specifies
+the ports the Service will expose, while `targetPort` maps the Service ports to the container's
+`containerPorts` declared previously.
 
-If you only need to expose a few ports and don't want to go through the trouble of
-changing all repository ports, you can use the `service.ports` section of the
-`values.yaml` file, which will make the chart ignore repo-specific port definitions
-and only expose the ports defined in that section.
+In `service.ports`, you define a map of `<port-name>: <port-number>` where the Kubernetes service
+will listen on. Then, you can use `service.targetPorts` to map service ports to container ports
+in the format `<service-port-name>: <container-port-name>`. For instance, assuming you defined a
+container port as `mysql: 3306` and a service port as `mysql: 3306`, you can set `mysql: mysql`
+in `targetPorts` to create a link between them.
+
+Following is an example of how to set service ports.
 
 ```yaml
 service:
   ...
   ports:
-    - 5432
-    - 3306
+    mysql: 3306
+    pg: 5432
+    mongodb0: 27017
+    mongodb1: 27018
+    mongodb2: 27019
+  targetPort:
+    mysql: mysql
+    pg: pg
+    mongodb0: mongodb0
+    mongodb1: mongodb1
+    mongodb2: mongodb2
 ```
 
-The above example makes no port but `3306` and `5432` be exposed on the service.
+The above example expose ports `3306`, `5432`, `27017`, `27018`, and `27019` on the service.

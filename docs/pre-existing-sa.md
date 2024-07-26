@@ -50,11 +50,10 @@ accounts. Below, we explain how to do this.
 
 3. **Modify the values.yaml file**: The downloaded `values.yaml` files
    need to be modified to use the above-created service account.
-   Note that `rbac.create` must be set to false:
+   Note that `serviceAccount.create` must be set to false:
 
    ```yaml
-    rbac:
-        serviceAccount:
-            name: $SIDECAR_SA
+    serviceAccount:
+        name: $SIDECAR_SA
         create: false
    ```
