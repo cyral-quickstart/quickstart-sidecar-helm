@@ -11,11 +11,12 @@ to your `values.yaml` file.
 ```yaml
 resources:
   limits:
-    cpu: 400m
+    cpu: 2
     memory: 8096Mi
   requests:
-    cpu: 100m
+    cpu: 1
     memory: 4096Mi
 ```
 
-**NOTE:** The above are the recommended settings for the sidecar.
+**NOTE:** The above are the recommended settings for the sidecar. We recommend that
+you adjust the limits based on your workload and the available resources.

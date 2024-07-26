@@ -7,28 +7,42 @@ accustomed to, the sidecar cluster exposes multiple ports.
 You can restrict or increase the set of exposed ports by changing
 the exposed ports in the `values.yaml` file.
 
-## Changing a single repository exposed ports
+## Declaring container ports
 
-On the `values.yaml` file, you can disable a specific repository, which will make its
-defined ports not get exposed in the main service. For example, by default,
-the `mysql` section of the `values.yaml` file contains this definition:
+On the `values.yaml` file, you can find different parameters related
+to ports exposure. The `containerPorts` object specifies which ports
+the container will listen on. It has a map of `<port-name>: <port-number>`,
+where `<port-name>` is an arbitrary name for the port and `<port-number>`
+is an integer to the TCP port. These are the same port numbers used to bind
+data repositories on the Control Plane.
 
 ```yaml
 containerPorts:
   mysql: 3306
   pg: 5432
+  mongodb0: 27017
+  mongodb1: 27018
+  mongodb2: 27019
 ```
 
-This means that the ports `3306` and `5432` will be exposed in the
-sidecar service. To increase or decrease the ports exposed, you can
-add or remove ports from the `containerPorts` section of the `values.yaml` file.
+The above example declares some port names (`mysql`, `pg`, `mongodb0`, `mongodb1`,
+and `mongodb2`) and their corresponding port numbers. We can refer to these port
+names later on to expose them through a Kubernetes service.
 
-## Overriding all exposed ports
+## Exposing container ports
 
-If you only need to expose a few ports and don't want to go through the trouble of
-changing all repository ports, you can use the `service.ports` section of the
-`values.yaml` file, which will make the chart ignore repo-specific port definitions
-and only expose the ports defined in that section.
+To expose container ports to external traffic or to other pods within the cluster, you need to set
+service ports. The `service` object defines `ports` and `targetPorts`. The `ports` property specifies
+the ports the Service will expose, while `targetPort`  maps the Service ports to the container's
+`containerPorts` declared previously.
+
+In `service.ports`, you define a map of `<port-name>: <port-number>` where the Kubernetes service
+will listen on. Then, you can use `service.targetPorts` to map service ports to container ports
+in the format `<service-port-name>: <container-port-name>`. For instance, assuming you defined a
+container port as `mysql: 3306` and a service port as `mysql: 3306`, you can set `mysql: mysql`
+in `targetPorts` to create a link between them.
+
+Following is an example of how to set service ports.
 
 ```yaml
 service:
@@ -36,9 +50,15 @@ service:
   ports:
     mysql: 3306
     pg: 5432
+    mongodb0: 27017
+    mongodb1: 27018
+    mongodb2: 27019
   targetPort:
     mysql: mysql
     pg: pg
+    mongodb0: mongodb0
+    mongodb1: mongodb1
+    mongodb2: mongodb2
 ```
 
-The above example makes no port but `3306` and `5432` be exposed on the service.
+The above example expose ports `3306`, `5432`, `27017`, `27018`, and `27019` on the service.
