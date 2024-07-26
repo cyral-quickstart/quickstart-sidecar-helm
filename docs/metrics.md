@@ -24,6 +24,22 @@ service:
 
 ## Prometheus configuration
 
+### Service Monitor discovery configuration
+
+The sidecar `helm` chart packages a `ServiceMonitor` object which can be used
+in conjunction with a [`prometheus operator`](https://github.com/prometheus-operator/prometheus-operator) to
+monitor all pods in the sidecar's `Deployment`. To enable the service monitor, you
+can add the following to your `values.yaml` file:
+
+```yaml
+metrics:
+  serviceMonitor:
+    enabled: true
+```
+
+**NOTE:** There are many other configuration options for the `ServiceMonitor` object,
+you can look at the default `values.yaml` file to know all the options.
+
 ### Annotation based Prometheus discovery configuration
 
 You can add common `Prometheus` annotations by adding the following
