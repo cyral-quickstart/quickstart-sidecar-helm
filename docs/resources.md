@@ -18,5 +18,5 @@ resources:
     memory: 4096Mi
 ```
 
-**NOTE:** The above are the recommended settings for the sidecar. We recommend that
+**NOTE:** The above are the recommended settings for the sidecar. We advise that
 you adjust the limits based on your workload and the available resources.
