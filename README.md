@@ -34,6 +34,10 @@ cyral:
   credentials:
     clientId: ""
     clientSecret: ""
+
+image:
+  # Sidecar version
+  tag: ""
 ​
 service:
   enabled: true
@@ -101,6 +105,10 @@ cyral:
   credentials:
     clientId: ""
     clientSecret: ""
+
+image:
+  # Sidecar version
+  tag: ""
 
 # Sets the node and inter-pod affinities so pods won't run
 # in the same node.
