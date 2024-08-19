@@ -23,21 +23,21 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
 #### Quick Start
 
 * Save the code below in a `values.yaml` file.
-    * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
-    and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
+    * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
+    and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
 
 ```yaml
-controlPlane:
-  host: ""
+cyral:
+  controlPlane: ""
+  sidecarId: ""
+  credentials:
+    clientId: ""
+    clientSecret: ""
 
-sidecarId: ""
-
-forwardProxy:
-  clientId: ""
-  clientSecret: ""
-  secretName: sidecar-secret
-  secretKeyName: credentials.json
+image:
+  # Sidecar version
+  tag: ""
 ​
 service:
   enabled: true
@@ -75,10 +75,10 @@ service:
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <SIDECAR_RELEASE_NAME> cyral/cyral-sidecar \
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+helm upgrade -i <SIDECAR_RELEASE_NAME> \
   --create-namespace \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION>
 ```
 
@@ -94,21 +94,21 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
 
 
 * Save the code below in a `values.yaml` file.
-    * Fill the parameters `controlPlane.host`, `sidecarId`, `forwardProxy.clientId`, 
-    and `forwardProxy.clientSecret` with the information from the `Cyral Templates` option
+    * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
+    and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
 
 ```yaml
-controlPlane:
-  host: ""
+cyral:
+  controlPlane: ""
+  sidecarId: ""
+  credentials:
+    clientId: ""
+    clientSecret: ""
 
-sidecarId: ""
-
-forwardProxy:
-  clientId: ""
-  clientSecret: ""
-  secretName: sidecar-secret
-  secretKeyName: credentials.json
+image:
+  # Sidecar version
+  tag: ""
 
 # Sets the node and inter-pod affinities so pods won't run
 # in the same node.
@@ -157,9 +157,9 @@ service:
     * `<VERSION>`: the version of your sidecar.
 
 ```bash
-helm repo add cyral https://charts.cyral.com
-helm upgrade -i <RELEASE_NAME> cyral/cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
+helm upgrade -i <RELEASE_NAME> \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION> --create-namespace
 ```
 
@@ -180,7 +180,7 @@ See the next section for more details about the values file parameters.
 
 ### Parameters
 
-See the full list of parameters in the [values file configuration reference](./docs/values-file.md).
+See the full list of parameters in the [chart documentation](https://github.com/cyralinc/helm-sidecar#parameters).
 
 ---
 
@@ -194,9 +194,9 @@ Use the following procedure to upgrade your sidecar:
     * `<VERSION>`: the version the sidecar should be upgraded to.
 
 ```bash
-helm upgrade -i <SIDECAR_NAMESPACE> cyral-sidecar /
-  --namespace <SIDECAR_NAMESPACE> -f values.yaml /
-  --repo https://charts.cyral.com /
+helm upgrade -i <RELEASE_NAME> \
+  --namespace <SIDECAR_NAMESPACE> -f values.yaml \
+  oci://public.ecr.aws/cyral/helm/sidecar \
   --version <VERSION>
 ```
 
@@ -206,16 +206,4 @@ Learn more in the [sidecar upgrade procedures](https://cyral.com/docs/sidecars/m
 
 ## Advanced
 
-Instructions for advanced configurations are available for the following topics:
-
-* [Enable the S3 File Browser](./docs/s3-browser.md)
-* [Expose to the Internet](./docs/public-load-balancer.md)
-* [Node scheduling](./docs/node-scheduling.md)
-* [Restrict repositories' ports](./docs/port-configuration.md)
-* [Set up database accounts through environment variables](./docs/database-accounts/environment-variables.md)
-* [Set up database accounts through AWS Secrets Manager](./docs/database-accounts/aws-secrets-manager.md)
-* [Set up resources](./docs/resources.md)
-* [Sidecar certificates](./docs/certificates.md)
-* [Sidecar instance metrics](./docs/metrics.md)
-* [Use a pre-existing service account](./docs/pre-existing-sa.md)
-* [Values file reference](./docs/values-file.md)
+Instructions for advanced configurations are available in the [chart's docs](https://github.com/cyralinc/helm-sidecar#advanced).
