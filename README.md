@@ -26,6 +26,7 @@ A quick start to deploy a sidecar to Kubernetes using Helm!
     * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
     and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
+    * Set `image.tag` with the sidecar version you want to deploy.
 
 ```yaml
 cyral:
@@ -72,14 +73,14 @@ service:
     * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
     `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
     * `<SIDECAR_RELEASE_NAME>`: the name of your release. We also recommend `cyral-` + `<SIDECAR_ID>` or some suffix to help locating the release.
-    * `<VERSION>`: the version of your sidecar.
+    * `<CHART_VERSION>`: the Helm chart version.
 
 ```bash
 helm upgrade -i <SIDECAR_RELEASE_NAME> \
   --create-namespace \
   --namespace <SIDECAR_NAMESPACE> -f values.yaml \
   oci://public.ecr.aws/cyral/helm/sidecar \
-  --version <VERSION>
+  --version <CHART_VERSION>
 ```
 
 The quick start example above will create the simplest configuration possible on your Kubernetes cluster
@@ -97,6 +98,7 @@ as part of the [repository configuration](https://cyral.com/docs/manage-reposito
     * Fill the parameters `cyral.controlPlane`, `cyral.sidecarId`, `cyral.credentials.clientId`, 
     and `cyral.credentials.clientSecret` with the information from the `Cyral Templates` option
     in the `Deployment` tab of your sidecar details.
+    * Set `image.tag` with the sidecar version you want to deploy.
 
 ```yaml
 cyral:
@@ -154,13 +156,13 @@ service:
     * `<RELEASE_NAME>`: your choice of name for the deployment, if its a  single sidecar in a namespace we'll typically use `cyral-sidecar` or `cyral-sidecar-<SIDECAR_ID>`
     * `<SIDECAR_NAMESPACE>`: your choice of namespace to be created. We recommend `cyral-` + 
     `<SIDECAR_ID>` to help you locate your namespace on a busy cluster.
-    * `<VERSION>`: the version of your sidecar.
+    * `<VERSION>`: the Helm chart version.
 
 ```bash
 helm upgrade -i <RELEASE_NAME> \
   --namespace <SIDECAR_NAMESPACE> -f values.yaml \
   oci://public.ecr.aws/cyral/helm/sidecar \
-  --version <VERSION> --create-namespace
+  --version <CHART_VERSION> --create-namespace
 ```
 
 The example above will create a production-grade configuration and assumes you understand
@@ -191,13 +193,13 @@ Use the following procedure to upgrade your sidecar:
 * Open a command line terminal in the same folder you have your `values.yaml` file.
 * Run the following command to deploy your sidecar, replacing the following variables:
     * `<SIDECAR_NAMESPACE>`: the sidecar namespace.
-    * `<VERSION>`: the version the sidecar should be upgraded to.
+    * `<CHART_VERSION>`: the Helm chart version.
 
 ```bash
 helm upgrade -i <RELEASE_NAME> \
   --namespace <SIDECAR_NAMESPACE> -f values.yaml \
   oci://public.ecr.aws/cyral/helm/sidecar \
-  --version <VERSION>
+  --version <CHART_VERSION>
 ```
 
 Learn more in the [sidecar upgrade procedures](https://cyral.com/docs/sidecars/manage/upgrade/) page.
